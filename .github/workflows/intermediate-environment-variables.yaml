@@ -1,0 +1,9 @@
+me: Intermediate environment variables
+on: push
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    env:
+      ACTOR: ${GITHUB_ACTOR}
+    steps:
+      - run: echo "${ACTOR}"

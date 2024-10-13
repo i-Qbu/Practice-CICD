@@ -1,4 +1,4 @@
-me: Hash functions
+name: Hash functions
 on: push
 jobs:
   hash:

@@ -1,0 +1,27 @@
+name: Get Open Pull Requests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-pull-requests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Make an authenticated request to GitHub API
+      - name: Get open pull requests
+        run: |
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/repos/${{ github.repository }}/pulls \
+               > pull_requests.json
+
+      # 3. Display the result
+      - name: Show the result
+        run: |
+          cat pull_requests.json
+
